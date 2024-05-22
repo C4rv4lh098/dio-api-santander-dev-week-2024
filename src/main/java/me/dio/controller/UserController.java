@@ -40,7 +40,7 @@ public class UserController {
     }
 
     @PostMapping
-    @Operation(summary = "Cria um novo usuário \n Create a new user", description = "Criar novo usuário e retorna os dados do usuário criado \n Create a new user and return the created user's data")
+    @Operation(summary = "Cria um novo usuário | Create a new user", description = "Criar novo usuário e retorna os dados do usuário criado | Create a new user and return the created user's data")
     public ResponseEntity<UserDto> create(@RequestBody User userToCreate) {
         User userCreated = userService.create(userToCreate);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -51,14 +51,14 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    @Operation(summary = "Atualizar usuário \n Update a user", description = "Atualiza informações de usuário existente \n Update the data of an existing user based on its ID")
+    @Operation(summary = "Atualizar usuário | Update a user", description = "Atualiza informações de usuário existente | Update the data of an existing user based on its ID")
     public ResponseEntity<UserDto> update(@PathVariable Long id, @RequestBody UserDto userDto){
         User user = userService.update(id, userDto.toModel());
         return ResponseEntity.ok(new UserDto(user));
     }
 
     @DeleteMapping("/{id}")
-    @Operation(summary = "Deletarusuário | Delete a user", description = "Apaga usuário exixtente \n Delete an existing user based on its ID")
+    @Operation(summary = "Deletarusuário | Delete a user", description = "Apaga usuário exixtente | Delete an existing user based on its ID")
     public ResponseEntity<Void> delete(@PathVariable Long id){
         userService.delete(id);
         return ResponseEntity.noContent().build();
